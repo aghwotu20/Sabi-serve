@@ -19,6 +19,7 @@ $navs = [
   'provider' => [
     'overview' => ['label' => 'Overview', 'href' => '/provider/index.php', 'icon' => 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z'],
     'listings' => ['label' => 'My Listings', 'href' => '/provider/index.php?tab=listings', 'icon' => 'M4 7h16M4 12h16M4 17h10'],
+    'skills' => ['label' => 'My Skills', 'href' => '/provider/index.php?tab=skills', 'icon' => 'M9 12l2 2 4-4M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z'],
     'enquiries' => ['label' => 'Enquiries', 'href' => '/provider/index.php?tab=enquiries', 'icon' => 'M4 6h16M4 12h16M4 18h10'],
     'profile' => ['label' => 'My Profile', 'href' => '/account/profile.php', 'icon' => 'M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm-7.5 9a7.5 7.5 0 0 1 15 0'],
     'subscribe' => ['label' => 'Subscription', 'href' => '/subscribe.php', 'icon' => 'M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z'],
@@ -35,6 +36,7 @@ $navs = [
     'staff' => ['label' => 'Staff Management', 'href' => '/admin/staff.php', 'icon' => 'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75'],
     'users' => ['label' => 'Users & Providers', 'href' => '/admin/users.php', 'icon' => 'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'],
     'categories' => ['label' => 'Categories', 'href' => '/admin/categories.php', 'icon' => 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z'],
+    'skills' => ['label' => 'Skills', 'href' => '/admin/skills.php', 'icon' => 'M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01'],
     'listings' => ['label' => 'Listings', 'href' => '/admin/listings.php', 'icon' => 'M4 7h16M4 12h16M4 17h10'],
     'reviews' => ['label' => 'Reviews', 'href' => '/admin/reviews.php', 'icon' => 'M12 3l2.7 5.6 6 .8-4.4 4.2 1.1 6L12 17.4 6.6 19.6l1.1-6-4.4-4.2 6-.8L12 3z'],
     'subscriptions' => ['label' => 'Subscriptions', 'href' => '/admin/subscriptions.php', 'icon' => 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'],

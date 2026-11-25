@@ -11,6 +11,8 @@ require_once __DIR__ . '/includes/public_header.php';
 
 $listings = db()->prepare("SELECT l.*, c.name AS category_name FROM listings l LEFT JOIN categories c ON c.id = l.category_id WHERE l.provider_id = ? AND l.status = 'active' ORDER BY l.created_at DESC");
 $listings->execute([$id]); $listings = $listings->fetchAll();
+$skillsStmt = db()->prepare("SELECT s.name, c.name AS cat_name FROM provider_skills ps JOIN skills s ON s.id = ps.skill_id JOIN categories c ON c.id = s.category_id WHERE ps.provider_id = ? ORDER BY c.sort_order, c.name, s.sort_order, s.name");
+$skillsStmt->execute([$id]); $providerSkills = $skillsStmt->fetchAll();
 $reviews = db()->prepare("SELECT r.*, u.full_name AS reviewer FROM reviews r JOIN users u ON u.id = r.user_id WHERE r.provider_id = ? AND r.status = 'visible' ORDER BY r.created_at DESC");
 $reviews->execute([$id]); $reviews = $reviews->fetchAll();
 $avg = $reviews ? array_sum(array_column($reviews, 'rating')) / count($reviews) : 0;
@@ -56,6 +58,13 @@ $waLink = 'https://wa.me/' . preg_replace('/\D/', '', $p['phone'] ?? '') . '?tex
         <div class="table-wrap"><table class="tbl"><thead><tr><th>Service</th><th>Price guide</th><th>Area</th></tr></thead><tbody>
           <?php foreach ($listings as $l): ?><tr><td><strong><?= h($l['title']) ?></strong><br><span class="hint"><?= h(mb_strimwidth((string)$l['description'], 0, 90, '…')) ?></span></td><td><?= h($l['price_hint'] ?: 'On request') ?></td><td><?= h($l['location'] ?: $p['location'] ?: '—') ?></td></tr><?php endforeach; ?>
         </tbody></table></div>
+      </div>
+      <?php endif; ?>
+
+      <?php if ($providerSkills): ?>
+      <div class="panel">
+        <div class="panel-head"><h2>Skills & expertise</h2><span class="pill pill-green"><?= count($providerSkills) ?> skills</span></div>
+        <?php $lastCat = null; foreach ($providerSkills as $sk): if ($sk['cat_name'] !== $lastCat): $lastCat = $sk['cat_name']; ?><div class="skill-cat-label"><?= h($lastCat) ?></div><?php endif; ?><span class="skill-tag"><?= h($sk['name']) ?></span> <?php endforeach; ?>
       </div>
       <?php endif; ?>
 

@@ -4,7 +4,7 @@ A production-ready, cPanel-deployable PHP/MySQL web application: Nigeria's servi
 marketplace where customers find verified providers (plumbing, electrical, tailoring,
 catering, tutoring, cleaning and more) and providers grow their business.
 
-- **Public website** — homepage with smart search, 16 service categories, featured providers, provider profiles, reviews, ratings, FAQs, About, Contact, Terms, Privacy.
+- **Public website** — homepage with smart search, 63 service categories, 665 searchable skills, featured providers, provider profiles, reviews, ratings, FAQs, About, Contact, Terms, Privacy.
 - **Four account types** — Customer, Service Provider, Staff, Administrator — one login page, three portal tabs.
 - **Portfolios & dashboards** — every account uploads a passport photograph and manages its own profile.
 - **₦2,000/month subscription** for both customers and providers, paid via **Paystack** (test or live keys configurable in Admin → Website Settings), with automatic webhook + verify-on-return activation.
@@ -68,6 +68,9 @@ Admin → **Website Settings → Maintenance Mode** toggles it instantly. Everyo
 ├── sql/sabiserve.sql                       # schema + seed data
 └── .htaccess                               # security headers, HTTPS hint, dir protection
 ```
+
+## Skills catalogue
+The marketplace ships with a full labour-market skills catalogue: **63 categories** and **665 skills** (e.g. Pipe repairs, POP ceiling installation, DSTV installation, Borehole drilling, Gas cooker installation). Providers tick the skills they offer under **Dashboard → My Skills**; customers filter and search by skill on the Find Services page, and skills appear as tags on provider cards and profiles. Admins manage the catalogue under **Admin → Skills** (add/delete skills per category).
 
 ## Security notes
 

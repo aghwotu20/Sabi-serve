@@ -4,7 +4,17 @@ $pageTitle = 'SabiServe — Find Trusted Service Providers in Nigeria';
 $metaDesc = 'Plumbers, electricians, cleaners, tailors, tutors, caterers, photographers and more. Verified Nigerian service providers, real reviews, secure bookings. Join SabiServe today.';
 require_once __DIR__ . '/includes/public_header.php';
 
-$categories = db()->query("SELECT c.*, (SELECT COUNT(*) FROM users u WHERE u.category_id = c.id AND u.role = 'provider' AND u.status = 'active') AS provider_count FROM categories c ORDER BY c.sort_order, c.name LIMIT 16")->fetchAll();
+$categories = db()->query("SELECT c.*, (SELECT COUNT(*) FROM users u WHERE u.category_id = c.id AND u.role = 'provider' AND u.status = 'active') AS provider_count FROM categories c ORDER BY c.sort_order, c.name LIMIT 24")->fetchAll();
+$popularSkillSlugs = ['pipe-repairs','solar-panel-installation','dstv-installation','cctv-camera-installation','pop-ceiling-installation','borehole-drilling','generator-repairs','ac-servicing','house-wiring','floor-tiling','gas-cooker-installation','car-mechanic'];
+$popularSkills = [];
+if ($popularSkillSlugs) {
+    $ph = implode(',', array_fill(0, count($popularSkillSlugs), '?'));
+    $psStmt = db()->prepare("SELECT name, slug FROM skills WHERE slug IN ($ph)");
+    $psStmt->execute($popularSkillSlugs);
+    $bySlug = [];
+    foreach ($psStmt->fetchAll() as $row) { $bySlug[$row['slug']] = $row; }
+    foreach ($popularSkillSlugs as $slug) { if (isset($bySlug[$slug])) $popularSkills[] = $bySlug[$slug]; }
+}
 $featured = db()->query("SELECT u.id, u.full_name, u.business_name, u.passport, u.location, u.bio, u.category_id, c.name AS category_name, COALESCE(AVG(r.rating), 0) AS avg_rating, COUNT(r.id) AS review_count FROM users u LEFT JOIN categories c ON c.id = u.category_id LEFT JOIN reviews r ON r.provider_id = u.id AND r.status = 'visible' WHERE u.role = 'provider' AND u.status = 'active' GROUP BY u.id ORDER BY avg_rating DESC, review_count DESC LIMIT 6")->fetchAll();
 $stats = [
     'providers' => (int) db()->query("SELECT COUNT(*) FROM users WHERE role='provider' AND status='active'")->fetchColumn(),
@@ -65,6 +75,14 @@ function pname(array $p): string { return $p['business_name'] ?: $p['full_name']
         <a class="cat-chip" href="<?= base_url('browse.php?category=' . urlencode($c['slug'])) ?>"><span class="ic"><?= category_icon($c['icon']) ?></span><span class="t"><?= h($c['name']) ?></span></a>
       <?php endforeach; ?>
     </div>
+    <?php if ($popularSkills): ?>
+    <div style="margin-top:26px">
+      <div class="eyebrow" style="margin-bottom:10px">Popular skills</div>
+      <div class="skill-chip-row">
+        <?php foreach ($popularSkills as $sk): ?><a class="skill-chip" href="<?= base_url('browse.php?skill=' . urlencode($sk['slug'])) ?>"><?= h($sk['name']) ?></a><?php endforeach; ?>
+      </div>
+    </div>
+    <?php endif; ?>
   </div>
 </section>
 

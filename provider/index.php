@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../includes/functions.php';
 $u = require_role(['provider']);
 $uid = (int)$u['id'];
-$tab = $_GET['tab'] ?? 'overview'; $tab = in_array($tab, ['overview', 'listings', 'enquiries'], true) ? $tab : 'overview';
+$tab = $_GET['tab'] ?? 'overview'; $tab = in_array($tab, ['overview', 'listings', 'skills', 'enquiries'], true) ? $tab : 'overview';
 $errors = [];
 
 // ---------- POST actions ----------
@@ -27,6 +27,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             db()->prepare('DELETE FROM listings WHERE id = ? AND provider_id = ?')->execute([(int)$_POST['listing_id'], $uid]);
             flash('info', 'Listing deleted.');
             break;
+        case 'skills_save':
+            $ids = array_map('intval', (array)($_POST['skill_ids'] ?? []));
+            $ids = array_values(array_unique(array_filter($ids)));
+            if ($ids) {
+                $ph = implode(',', array_fill(0, count($ids), '?'));
+                $valid = db()->prepare("SELECT id FROM skills WHERE id IN ($ph)");
+                $valid->execute($ids);
+                $ids = array_map('intval', $valid->fetchAll(PDO::FETCH_COLUMN));
+            }
+            db()->prepare('DELETE FROM provider_skills WHERE provider_id = ?')->execute([$uid]);
+            if ($ids) {
+                $rows = array_map(fn($id) => "($uid, $id)", $ids);
+                db()->query('INSERT IGNORE INTO provider_skills (provider_id, skill_id) VALUES ' . implode(',', $rows));
+            }
+            flash('success', 'Your skills have been saved. Customers can now find you by these skills.');
+            break;
         case 'enquiry_reply':
             $eid = (int)($_POST['enquiry_id'] ?? 0); $reply = trim($_POST['provider_reply'] ?? '');
             if ($reply === '') { flash('error', 'Please write a reply.'); break; }
@@ -41,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('/provider/index.php?tab=' . $tab);
 }
 
-$dashRole = 'provider'; $dashTitle = match ($tab) { 'listings' => 'My Listings', 'enquiries' => 'Customer Enquiries', default => 'Provider Dashboard' }; $activeTab = $tab;
+$dashRole = 'provider'; $dashTitle = match ($tab) { 'listings' => 'My Listings', 'skills' => 'My Skills', 'enquiries' => 'Customer Enquiries', default => 'Provider Dashboard' }; $activeTab = $tab;
 require_once __DIR__ . '/../includes/dash_top.php';
 
 $sub = active_subscription($uid);
@@ -98,6 +114,38 @@ $categories = db()->query('SELECT id, name FROM categories ORDER BY name')->fetc
       <button class="btn btn-emerald btn-block" type="submit">Publish Listing</button>
     </form>
   </div>
+
+<?php elseif ($tab === 'skills'): ?>
+  <?php
+  $allSkills = db()->query("SELECT s.id, s.name, s.category_id, c.name AS cat_name FROM skills s JOIN categories c ON c.id = s.category_id ORDER BY c.sort_order, c.name, s.sort_order, s.name")->fetchAll();
+  $mineStmt = db()->prepare('SELECT skill_id FROM provider_skills WHERE provider_id = ?'); $mineStmt->execute([$uid]);
+  $mineIds = array_map('intval', $mineStmt->fetchAll(PDO::FETCH_COLUMN));
+  $grouped = [];
+  foreach ($allSkills as $sk) { $grouped[$sk['cat_name']][] = $sk; }
+  ?>
+  <div class="panel">
+    <div class="panel-head"><h2>Skills you offer</h2><span class="pill pill-green" id="skill-count"><?= count($mineIds) ?> selected</span></div>
+    <p class="hint" style="margin-bottom:14px">Tick every skill you can do — from any category. Customers searching for e.g. “POP ceiling installation” or “DSTV installation” will find you. You can change this anytime.</p>
+    <div class="form-group" style="margin-bottom:16px"><label class="fl" for="skill-filter">Filter skills</label><input class="form-control" id="skill-filter" placeholder="Type to filter… e.g. tiling, solar, CCTV" oninput="filterSkills(this.value)"></div>
+    <form method="post" action="/provider/index.php?tab=skills">
+      <?= csrf_field() ?><input type="hidden" name="action" value="skills_save">
+      <?php foreach ($grouped as $cat => $items): ?>
+        <div class="skill-group">
+          <h3><?= h($cat) ?> <span class="hint">(<?= count($items) ?>)</span></h3>
+          <div class="skill-checks">
+            <?php foreach ($items as $sk): ?>
+              <label class="skill-check" data-name="<?= h(strtolower($sk['name'])) ?>"><input type="checkbox" name="skill_ids[]" value="<?= (int)$sk['id'] ?>" <?= in_array((int)$sk['id'], $mineIds, true) ? 'checked' : '' ?> onchange="updateSkillCount()"> <?= h($sk['name']) ?></label>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      <?php endforeach; ?>
+      <button class="btn btn-emerald btn-block" type="submit" style="margin-top:18px">Save My Skills</button>
+    </form>
+  </div>
+  <script>
+  function filterSkills(v){ v = v.toLowerCase(); document.querySelectorAll('.skill-check').forEach(function(el){ el.style.display = el.dataset.name.indexOf(v) !== -1 ? '' : 'none'; }); document.querySelectorAll('.skill-group').forEach(function(g){ var any = false; g.querySelectorAll('.skill-check').forEach(function(el){ if (el.style.display !== 'none') any = true; }); g.style.display = any ? '' : 'none'; }); }
+  function updateSkillCount(){ var n = document.querySelectorAll('input[name="skill_ids[]"]:checked').length; document.getElementById('skill-count').textContent = n + ' selected'; }
+  </script>
 
 <?php elseif ($tab === 'enquiries'): ?>
   <div class="panel">

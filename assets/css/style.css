@@ -371,3 +371,20 @@ table.tbl{width:100%;border-collapse:collapse;font-size:.88rem}
 
 .cat-hero h1,.cat-hero .eyebrow{color:#fff}
 .cat-hero .breadcrumb a{color:#FDE68A}
+
+/* ---- skills catalogue ---- */
+.skill-tag{display:inline-block;background:var(--green-50);border:1px solid var(--line);color:var(--green-800);border-radius:999px;padding:3px 10px;font-size:.75rem;font-weight:600;margin:0 4px 6px 0}
+.skill-tag.more{background:#F1F5F3;color:#475569}
+.p-skills{margin-top:10px}
+.skill-cat-label{font-weight:700;font-size:.78rem;color:var(--green-800);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.05em}
+.skill-cat-label:first-child{margin-top:0}
+.skill-group{margin-bottom:20px}
+.skill-group h3{font-size:.95rem;margin-bottom:8px;color:var(--green-950)}
+.skill-checks{display:flex;flex-wrap:wrap;gap:6px}
+.skill-check{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.82rem;cursor:pointer;transition:all .15s}
+.skill-check:hover{border-color:var(--green-700)}
+.skill-check input{accent-color:var(--green-700);width:15px;height:15px}
+.skill-check:has(input:checked){background:var(--green-50);border-color:var(--green-700);color:var(--green-950);font-weight:600}
+.skill-chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.skill-chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.83rem;font-weight:600;color:var(--green-950);transition:all .15s}
+.skill-chip:hover{background:var(--green-700);color:#fff;border-color:var(--green-700)}
