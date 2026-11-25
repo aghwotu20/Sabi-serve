@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="SabiServe — Connecting Nigerians to trusted services">
+  <rect width="1200" height="630" fill="#065F46"/>
+  <circle cx="1020" cy="90" r="260" fill="#0E9F6E" opacity=".45"/>
+  <circle cx="120" cy="560" r="240" fill="#FBBF24" opacity=".22"/>
+  <path d="M150 235c-63 0-114 51-114 114 0 85.8 114 188.4 114 188.4S264 434.8 264 349c0-63-51-114-114-114z" fill="#FBBF24"/>
+  <circle cx="150" cy="349" r="52" fill="#065F46"/>
+  <text x="330" y="320" font-family="Georgia,serif" font-size="88" font-weight="700" fill="#FFFFFF">SabiServe</text>
+  <text x="330" y="395" font-family="Georgia,serif" font-size="34" fill="#A7F3D0">Connecting Nigerians to trusted services</text>
+  <text x="330" y="455" font-family="Georgia,serif" font-size="24" fill="#FBBF24">sabiserve.com.ng</text>
+</svg>

@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+/uploads/*
+!/uploads/.htaccess
+!/uploads/.gitkeep
+config-local.php
