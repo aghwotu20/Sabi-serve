@@ -112,7 +112,7 @@ $pubKey = $s['paystack_public_key'] ?? ''; $secKey = $s['paystack_secret_key'] ?
   <div class="panel-head"><h2>📱 WhatsApp &amp; Social Media</h2><span class="hint">Powers the floating WhatsApp button and footer icons</span></div>
   <div class="form-grid">
     <div class="form-group"><label class="fl" for="whatsapp_number">WhatsApp number <span class="hint">(international format, digits only)</span></label><input class="form-control" id="whatsapp_number" name="whatsapp_number" value="<?= h($s['whatsapp_number'] ?? '2348030567553') ?>" placeholder="2348030567553"></div>
-    <div class="form-group"><label class="fl" for="office_address">Office address</label><input class="form-control" id="office_address" name="office_address" value="<?= h($s['office_address'] ?? '17 Adeola Odeku Street, Victoria Island, Lagos') ?>"></div>
+    <div class="form-group"><label class="fl" for="office_address">Office address</label><input class="form-control" id="office_address" name="office_address" value="<?= h($s['office_address'] ?? 'No 8 Kess Rubber Factory Street, Ughelli, Delta State') ?>"></div>
     <div class="form-group"><label class="fl" for="facebook_url">Facebook page URL</label><input class="form-control" id="facebook_url" name="facebook_url" value="<?= h($s['facebook_url'] ?? 'https://www.facebook.com/sabiserve.ng') ?>" placeholder="https://www.facebook.com/…"></div>
     <div class="form-group"><label class="fl" for="instagram_url">Instagram profile URL</label><input class="form-control" id="instagram_url" name="instagram_url" value="<?= h($s['instagram_url'] ?? 'https://www.instagram.com/sabiserve.ng') ?>" placeholder="https://www.instagram.com/…"></div>
   </div>

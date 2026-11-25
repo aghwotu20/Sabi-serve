@@ -213,6 +213,18 @@ function category_icon(string $key, int $size = 28): string {
         'code' => '<path d="M8 8l-5 4 5 4M16 8l5 4-5 4M13 6l-2 12" stroke-linecap="round" stroke-linejoin="round"/>',
         'shield' => '<path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3z" stroke-linejoin="round"/>',
         'truck' => '<path d="M3 7h11v10H3zM14 10h4l3 3v4h-7" stroke-linejoin="round"/><circle cx="7" cy="17" r="1.4"/><circle cx="17" cy="17" r="1.4"/>',
+        'plug' => '<path d="M9 3v4M15 3v4M7 7h10v3a5 5 0 0 1-5 5 5 5 0 0 1-5-5V7z" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15v6" stroke-linecap="round"/>',
+        'home' => '<path d="M4 11.5 12 4l8 7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 10v9h11v-9" stroke-linejoin="round"/><path d="M10.5 19v-4.5h3V19" stroke-linejoin="round"/>',
+        'grid' => '<rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/>',
+        'phone' => '<rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M10.5 18.5h3" stroke-linecap="round"/>',
+        'heart' => '<path d="M12 20.3S4.4 15.6 4.4 9.4A4.5 4.5 0 0 1 12 6.2a4.5 4.5 0 0 1 7.6 3.2c0 6.2-7.6 10.9-7.6 10.9z" stroke-linejoin="round"/>',
+        'group' => '<circle cx="9" cy="8" r="3.2"/><circle cx="16.6" cy="10" r="2.5"/><path d="M3.8 20a5.3 5.3 0 0 1 10.4 0M13.4 15.6a4.4 4.4 0 0 1 7 4.4" stroke-linecap="round"/>',
+        'leaf' => '<path d="M5 19C5 9.5 11.5 5 21 5c0 10-5.5 14-16 14z" stroke-linejoin="round"/><path d="M5 19c4-6.5 8.5-9.5 12.5-11.5" stroke-linecap="round"/>',
+        'scale' => '<path d="M12 4v16M8.5 20h7M5 7h14" stroke-linecap="round"/><path d="M7 7l-2.3 6a3.1 3.1 0 0 0 4.6 0L7 7zM17 7l-2.3 6a3.1 3.1 0 0 0 4.6 0L17 7z" stroke-linejoin="round"/>',
+        'calculator' => '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8.5 7h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01" stroke-linecap="round"/>',
+        'music' => '<path d="M9 18V5l10-2v12.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="15.5" r="2.5"/>',
+        'droplet' => '<path d="M12 3s6.5 7.1 6.5 11.8a6.5 6.5 0 0 1-13 0C5.5 10.1 12 3 12 3z" stroke-linejoin="round"/>',
+        'briefcase' => '<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13.5h18" stroke-linecap="round"/>',
     ];
     $p = $icons[$key] ?? $icons['wrench'];
     return '<svg width="' . (int)$size . '" height="' . (int)$size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $p . '</svg>';

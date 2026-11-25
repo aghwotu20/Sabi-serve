@@ -156,7 +156,7 @@ INSERT INTO settings (setting_key, setting_value) VALUES
 ('whatsapp_number', '2348030567553'),
 ('facebook_url', 'https://www.facebook.com/sabiserve.ng'),
 ('instagram_url', 'https://www.instagram.com/sabiserve.ng'),
-('office_address', '17 Adeola Odeku Street, Victoria Island, Lagos');
+('office_address', 'No 8 Kess Rubber Factory Street, Ughelli, Delta State');
 
 -- ---------- categories ----------
 INSERT INTO categories (name, slug, icon, description, sort_order) VALUES
@@ -176,6 +176,39 @@ INSERT INTO categories (name, slug, icon, description, sort_order) VALUES
 ('Web & Tech Services', 'web-tech', 'code', 'Websites, apps, IT support and networking', 14),
 ('Security Services', 'security-services', 'shield', 'Manned guarding, CCTV and access control', 15),
 ('Logistics & Dispatch', 'logistics-dispatch', 'truck', 'Deliveries, moving and haulage', 16);
+
+INSERT INTO categories (name, slug, icon, description, sort_order) VALUES
+('Solar & Renewable Energy', 'solar-renewable-energy', 'bolt', 'Solar panel sales, installation and inverter maintenance', 17),
+('Generator & Power Solutions', 'generator-power-solutions', 'plug', 'Generator sales, repairs and servicing', 18),
+('Welding & Fabrication', 'welding-fabrication', 'hammer', 'Gates, railings, tank stands and custom metal works', 19),
+('Building & Construction', 'building-construction', 'home', 'Blocklaying, concrete works and building finishing', 20),
+('Roofing & Waterproofing', 'roofing-waterproofing', 'hammer', 'Roof repairs, waterproofing and damp-proofing', 21),
+('Tiling & Flooring', 'tiling-flooring', 'grid', 'Floor tiling, wall cladding, vinyl and epoxy finishes', 22),
+('Phone & Laptop Repairs', 'phone-laptop-repairs', 'phone', 'Screen, battery, charging and motherboard repairs', 23),
+('IT & Networking Services', 'it-networking', 'code', 'Networks, servers, website hosting and IT support', 24),
+('CCTV & Smart Home', 'cctv-smart-home', 'camera', 'CCTV, alarms, access control and smart home setup', 25),
+('Pest Control', 'pest-control', 'shield', 'Cockroaches, rodents, termites and snake removal', 26),
+('Laundry & Dry Cleaning', 'laundry-dry-cleaning', 'sparkles', 'Wash, dry-clean, ironing and home pickup and delivery', 27),
+('Home Nursing & Caregiving', 'home-nursing-caregiving', 'heart', 'Trained nurses and caregivers for patients and the elderly', 28),
+('Childcare & Babysitting', 'childcare-babysitting', 'group', 'Trusted nannies and babysitters, daytime or live-in', 29),
+('Agriculture & Livestock', 'agriculture-livestock', 'leaf', 'Poultry, fish farming, consulting and farm supplies', 30),
+('Legal Services', 'legal-services', 'scale', 'Property, family, business and litigation support', 31),
+('Accounting & Taxation', 'accounting-taxation', 'calculator', 'Bookkeeping, auditing, tax filing and payroll', 32),
+('Entertainment & DJs', 'entertainment-djs', 'music', 'DJs, MCs, live bands, sound and event lighting', 33),
+('Interior Design', 'interior-design', 'paint', 'Space planning, styling and fit-out services', 34),
+('Borehole & Drilling', 'borehole-drilling', 'droplet', 'Borehole drilling, pumping and water treatment', 35),
+('Refrigerator & Freezer Repair', 'refrigerator-freezer-repair', 'snow', 'Domestic and commercial cooling system repairs', 36),
+('Driving Lessons', 'driving-lessons', 'car', 'Certified instructors for cars and heavy-duty vehicles', 37),
+('Typing & Data Entry', 'typing-data-entry', 'briefcase', 'Typing, documentation, data entry and interpretation', 38),
+('Real Estate & Property', 'real-estate-property', 'home', 'House listings, rentals, inspections and agency services', 39),
+('Marketing & Branding', 'marketing-branding', 'briefcase', 'Social media, design, branding and promotion', 40),
+('Shoemaking & Leatherworks', 'shoemaking-leatherworks', 'scissors', 'Shoemaking, leather products and repairs', 41),
+('Career & Business Consulting', 'career-business-consulting', 'briefcase', 'CVs, business plans and professional coaching', 42),
+('Barbering & Salon at Home', 'barbering-salon-at-home', 'comb', 'Home haircuts, grooming and salon services', 43),
+('Swimming Pool Maintenance', 'swimming-pool-maintenance', 'droplet', 'Pool cleaning, chemical balancing and repairs', 44),
+('Moving & Relocation', 'moving-relocation', 'truck', 'Local and interstate moves, packing and haulage', 45),
+('Vulcanizing & Tyre Services', 'vulcanizing-tyre-services', 'car', 'Mobile vulcanizing, tyre sales and wheel balancing', 46);
+
 
 -- ---------- seed accounts (all passwords documented in README) ----------
 -- admin@sabiserve.com.ng  / Admin@12345

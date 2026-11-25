@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $dashRole = 'admin'; $dashTitle = 'Service Categories'; $activeTab = 'categories';
 require_once __DIR__ . '/../includes/dash_top.php';
 $categories = db()->query("SELECT c.*, (SELECT COUNT(*) FROM users u WHERE u.category_id = c.id AND u.role = 'provider') AS providers FROM categories c ORDER BY c.sort_order, c.name")->fetchAll();
-$iconOptions = ['wrench','bolt','sparkles','hammer','paint','snow','scissors','pot','camera','comb','car','book','party','code','shield','truck'];
+$iconOptions = ['wrench','bolt','plug','sparkles','hammer','paint','snow','scissors','pot','camera','comb','car','book','party','code','shield','truck','home','grid','phone','heart','group','leaf','scale','calculator','music','droplet','briefcase'];
 ?>
 <div class="grid-2">
   <div class="panel">

@@ -39,7 +39,7 @@ try { $cats = db()->query('SELECT name, slug FROM categories ORDER BY sort_order
       <div>
         <h4>Head Office</h4>
         <ul class="foot-list">
-          <li>SabiServe Ltd, <?= h(setting('office_address', '17 Adeola Odeku Street, Victoria Island, Lagos')) ?></li>
+          <li>SabiServe Ltd, <?= h(setting('office_address', 'No 8 Kess Rubber Factory Street, Ughelli, Delta State')) ?></li>
           <li><a href="tel:+2348030567553">0803 056 7553</a></li>
           <li><a href="mailto:info@sabiserve.com.ng">info@sabiserve.com.ng</a></li>
           <li>Mon – Sat, 8:00am – 7:00pm WAT</li>
